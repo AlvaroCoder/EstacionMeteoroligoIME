@@ -4,12 +4,13 @@ import User1 from '../Assets/Images/User1.png';
 import User2 from '../Assets/Images/User2.png';
 import User3 from '../Assets/Images/User3.png'
 function CardParticipant({img, displayName}) {
-    return (<div className='w-48  ml-5 h-80 bg-piel3'>
-        <img className='rounded-[50%] ' src={img} alt='User '></img> 
-        <div>
-            <h1 className='text-center mt-5'>{displayName}</h1>
-        </div>   
-    </div>)
+    return (
+        <div className='w-48  ml-5 h-80 bg-piel3'>
+            <img className='rounded-[50%]' src={img} alt='User '></img> 
+            <div>
+                <h1 className='text-center mt-5'>{displayName}</h1>
+            </div>   
+        </div>)
 }
 function Participants() {
     const participants = [
