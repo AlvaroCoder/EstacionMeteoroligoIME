@@ -14,7 +14,7 @@ function Banner() {
                 </div>
                 <div className='w-1/2 h-screen flex justify-center items-center bg-azul'>
                     <div className='w-1/2 h-52 text-center '>
-                        <h1 className='text-3xl font-bold text-piel3'>DATOS ACTUALIZADOS</h1>
+                        <h1 className='text-3xl font-bold text-piel3'>DATOS ACTUALIZADOS 2.0 PERU</h1>
                         <h2 className='text-3xl font-bold text-piel3'>UBICACION : POR DEFINIR</h2>
                         <button className='bg-piel1 text-azul p-4 py-2 font-bold rounded-lg mt-6'>Ver Datos</button>
                     </div>

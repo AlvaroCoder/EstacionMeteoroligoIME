@@ -27,10 +27,13 @@ export function AdapterUbidotsData(dataUbidots) {
       const text = `${date.getHours()}:${date.getMinutes()}`
       return text
     });
+    
     /*
     Transformación de la data recibida por Ubidots en listas.
     Cuando se agregue una nueva variable debe seguir la forma de dataTemperatura, en la posición (i+1)
+    [] => [👋,📈,🐍] => (condicion==👋) => [👋]
     */
+
     const dataHumedad = dataUbidots[0].map((val)=>val[0]);
     const dataTemperatura = dataUbidots[1].reverse().map((val)=>val[0]);
     // Colores de cada línea del gráfico

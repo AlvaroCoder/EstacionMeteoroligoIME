@@ -4,3 +4,6 @@ export function fetchWeather() {
         mode : 'cors'
     })
 }
+export function fetchIconWeather() {
+    
+}

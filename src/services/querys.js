@@ -13,3 +13,6 @@ export function fetchDataDevices() {
         })
     })
 }
+export function fetchDevices() {
+    
+}
