@@ -7,7 +7,7 @@ export function fetchDataDevices() {
             'Content-Type':'application/json'
         },
         body : JSON.stringify({
-            "variables":["651ba29ff21fd6000e22deb1","651ba29f52844a0af3688f25"],
+            "variables":["6542e7f0e95a76000de1c46b","6542e0526e1af6000bcfad86","6542e7994a687a000df479a9","6542e2c14a687a000ff98634","6542e76d84e43d000ea611e1","6542bb34b14253000b9b6fb1","6542e7c46e1af6000bcfad87"],
             "columns":["value.value","variable.name","timestamp"],
             "join_dataframes": false
         })

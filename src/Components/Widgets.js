@@ -2,7 +2,6 @@ import React  from 'react'
 import icons from '../Server/icons.json';
 
 function Widgets({currentTemp}) {
-    console.log(currentTemp);
     const srcWeatherIcon = icons.filter((value)=>{
         if (currentTemp>value.temperaturaMinima && currentTemp<value.temperaturaMaxima) {
             return value;

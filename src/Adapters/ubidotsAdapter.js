@@ -12,59 +12,45 @@ export function OptionsUbidots(text) {
     },
   }
 }
-function CreateDataset(label="", data=[], borderColor="", backgroundColor="") {
-  return {
-    label,
-    data,
-    borderColor, 
-    backgroundColor
-  }
-}
+
 export function AdapterUbidotsData(dataUbidots) {
+  // Lista de los nombres de los dispositivos
+    const labelsDevices = dataUbidots.map((val)=>{
+      return val[0][1]
+    });
     // Creación de labels en función del parámetro "Timestamp" recibido de Ubidots
-    const labels = dataUbidots[0].reverse().map((val)=>{
+    const labelsX = dataUbidots[0].reverse().map((val)=>{
       const date = new Date(val[2]);
       const text = `${date.getHours()}:${date.getMinutes()}`
       return text
     });
-    
     /*
-    Transformación de la data recibida por Ubidots en listas.
-    Cuando se agregue una nueva variable debe seguir la forma de dataTemperatura, en la posición (i+1)
-    [] => [👋,📈,🐍] => (condicion==👋) => [👋]
+      Transformamos la data de la forma [Array(100),Array(100),...,Array(100)]
+      a [{
+        "title":label,
+        "data":{
+          datasets,
+          "labels":labelsX
+        }
+      }]
     */
-
-    const dataHumedad = dataUbidots[0].map((val)=>val[0]);
-    const dataTemperatura = dataUbidots[1].reverse().map((val)=>val[0]);
-    // Colores de cada línea del gráfico
-    // b->border & bg->background
-    let titleHum = "Humedad"
-    let bColorHum = 'rgb(255, 99, 132)'
-    let bgColorHum = 'rgba(255, 99, 132, 0.5)'
-
-    let titleTemp = "Temperatura"
-    let bColorTemp ='rgb(53, 162, 235)'
-    let bgColorTemp ='rgba(53, 162, 235, 0.5)'
-    
-    const humedad = {
-      labels,
-      datasets : [CreateDataset(titleHum, dataHumedad, bColorHum, bgColorHum)]
-    }
-    const temperatura = {
-      labels,
-      datasets : [CreateDataset(titleTemp, dataTemperatura, bColorTemp, bgColorTemp)]
-    }
-
-    /*
-
-    TODO:
-    Si existiera más data, solo se debe crear un nuevo objeto siguiendo el ejemplo de los objetos de arriba
-    y retornarlo en el objeto de "return"
-
-    */
-    return {
-      humedad,
-      temperatura
-    }
+    const splitData = labelsDevices.map((label, key )=>{
+      const data = dataUbidots[key].map((val)=>val[0]);
+      const datasets = [{
+        label : label.toUpperCase(),
+        data,
+        borderColor: 'rgb(53, 162, 235)',
+        backgroundColor: 'rgba(53, 162, 235, 0.5)'
+      }]
+      return {
+        "title":label.toUpperCase(),
+        "data":{
+          datasets,
+          "labels":labelsX
+        }
+      }
+    });
+    return splitData
 }
+
 // :)
