@@ -21,6 +21,7 @@ export function AdapterUbidotsData(dataUbidots) {
     // Creación de labels en función del parámetro "Timestamp" recibido de Ubidots
     const labelsX = dataUbidots[0].reverse().map((val)=>{
       const date = new Date(val[2]);
+      console.log(date);
       const text = `${date.getHours()}:${date.getMinutes()}`
       return text
     });

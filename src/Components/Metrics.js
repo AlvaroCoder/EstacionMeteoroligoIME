@@ -23,11 +23,14 @@ function Metrics() {
 
             setDataMetrics(dataAdaptted);
             const currentTemperature = dataAdaptted.filter((val)=>val.title.toUpperCase()==="TEMPERATURE")[0]['data']['datasets'][0]['data'][0]
-            console.log(currentTemperature);
+
             setCurrentTemp(currentTemperature)
           }
-        getPost();
-    },[]);
+          getPost();
+          setInterval(()=>{
+            getPost();
+          }, 300000)
+        },[]);
 
     ChartJS.register(
         CategoryScale,

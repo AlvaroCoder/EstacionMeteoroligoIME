@@ -2,8 +2,7 @@ import React from 'react';
 import LogoUdep from '../Assets/Images/UdepLogo.png';
 function NavBar() {
     const urls = [
-        {"displayName":"Inicio","url":"/"},
-        {"displayName":"Historia","url":"/"}
+        {"displayName":"Puquchi","url":"/"}
     ]
   return (
     <nav className='w-100 h-20 bg-slate-300 flex flex-row justify-between items-center'>
@@ -13,14 +12,10 @@ function NavBar() {
         <div className='w-30'>
             <ul className='flex flex-row '>
                 {urls.map((url,key)=>{
-                    return (<li key={key} className='ml-5 p-4 py-2 h-10 leading-4 rounded-lg cursor-pointer flex items-center justify-center text-center hover:bg-slate-200'><span>{url.displayName}</span></li>)
+                    return (<li key={key} className='ml-5 p-4 py-2 h-10 leading-4 font-custom rounded-lg cursor-pointer flex items-center justify-center text-center font-londrina text-3xl text-azul_logo hover:bg-slate-200'><span>{url.displayName}</span></li>)
                 })}
             </ul>
         </div>
-        {/* <div>
-            <span className='w-20 cursor-pointer hover:bg-slate-200 rounded-md p-4 py-2'>Login</span>
-            <span className='w-20 ml-3 cursor-pointer hover:bg-slate-200 rounded-md p-4 py-2'>Register</span>
-        </div> */}
     </nav>
   )
 }
