@@ -7,14 +7,16 @@ module.exports = withMT({
   ],
   theme: {
     colors:{
-      "azul":"#102C57",
+      "azul":"#1A3C4E",
       "piel1":"#DAC0A3",
       "piel2":"#EADBC8",
       "piel3":"#F8F0E5",
       "celeste":"#C2DEDC",
       "crema":"#ECE5C7",
       "marron":"#CDC2AE",
-      "azul_logo":"#10638c"
+      "azul_logo":"#10638c",
+      "naranja":"#EC7263",
+      "blanco":"#FFFFFF"
     },
     extend: { 
       fontFamily : {

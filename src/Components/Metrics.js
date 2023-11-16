@@ -3,7 +3,6 @@ import { fetchDataDevices } from '../services/querys';
 import {Chart as ChartJS,CategoryScale,LinearScale,PointElement,LineElement,Title,Tooltip,Legend} from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import { AdapterUbidotsData, OptionsUbidots } from '../Adapters/ubidotsAdapter';
-import Widget from './Widgets';
 import { Carousel, IconButton } from '@material-tailwind/react';
 function Metrics() {
     const [dataMetrics, setDataMetrics] = useState(null);
@@ -50,8 +49,6 @@ function Metrics() {
   }
   return (
     <div className='w-full min-h-screen flex flex-col py-5'>
-
-<Widget currentTemp={21}/>
         <div className='w-full text-3xl mt-10 h-10 text-center'>
             <h1 className=''>MEDICIONES</h1>
         </div>
