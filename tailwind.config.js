@@ -16,7 +16,9 @@ module.exports = withMT({
       "marron":"#CDC2AE",
       "azul_logo":"#10638c",
       "naranja":"#EC7263",
-      "blanco":"#FFFFFF"
+      "blanco":"#FFFFFF",
+      "gris_opacity":"#CAC8C8",
+      "gris":"#8C8A8A"
     },
     extend: { 
       fontFamily : {

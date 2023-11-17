@@ -14,5 +14,7 @@ export const RESOURCES = {
     IMG_RAIN : "https://res.cloudinary.com/du54frtr1/image/upload/v1700115759/rainy-day_hnsw4w.png",
     IMG_MOON_RAIN : "https://res.cloudinary.com/du54frtr1/image/upload/v1700115759/raining_kipnrk.png",
     BANNER_BANANITOS : "https://res.cloudinary.com/du54frtr1/image/upload/v1700115639/banano_tmv1vi.png",
-    NOCHE_BANNER : "https://res.cloudinary.com/dabyqnijl/image/upload/v1700124090/Fondo_Noche_BANANITOS_y2jkbh.png"
+    NOCHE_BANNER : "https://res.cloudinary.com/dabyqnijl/image/upload/v1700124090/Fondo_Noche_BANANITOS_y2jkbh.png",
+    ICON_SOL : "https://res.cloudinary.com/du54frtr1/image/upload/v1700117640/UV_f1psgv.png",
+    ICON_LLUVIA : "https://res.cloudinary.com/du54frtr1/image/upload/v1700117630/icon__cloud_light_rain__b2qrpl.png",   
 }

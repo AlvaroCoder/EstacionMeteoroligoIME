@@ -28,13 +28,14 @@ function Banner() {
     const [humidityValue, setHumidityValue] = useState(null);
     const [velocityValue, setVelocityValue] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [currentHour, setCurrentHour] = useState(null);
+    const [currentHour, setCurrentHour] = useState(0);
     useEffect(()=>{
         function fetchTime() {
             const date = new Date();
             const time = date.toLocaleTimeString();
             const hour = date.getHours();
-            setCurrentHour(hour)
+            setCurrentHour(hour);
+
             const timeSuffix = hour > 12 ? 'P.M.' : 'A.M.'
             const timeStr = `${time} ${timeSuffix}`
             const greeting = hour >= 12 ? (hour <= 19 ? 'Buenas Tardes' : 'Buenas Noches') : 'Buenos Días'
@@ -82,9 +83,9 @@ function Banner() {
         },300000)
     },[]);
     return (
-        <div className={`relative w-full h-screen flex flex-row justify-center items-center ${currentHour && (currentHour > 5 ? (currentHour <= 17 ? 'bg-naranja'  : 'bg-azul'): 'bg-azul')} `}>
+        <div className={`relative w-full h-screen flex flex-row justify-center items-center ${currentHour > 5 ? (currentHour <= 17 ? 'bg-naranja'  : 'bg-azul'): 'bg-azul'} `}>
             <div className='absolute w-full h-screen top-0 right-0 z-0 flex justify-end items-end'>
-            <img className='w-full h-screen object-cover' src={currentHour && (currentHour > 5 ? (currentHour <= 17 ? RESOURCES.SOL_BANNER  : RESOURCES.NOCHE_BANNER): RESOURCES.NOCHE_BANNER)} alt='Banner'></img>
+            <img className='w-full h-screen object-cover' src={currentHour > 5 ? (currentHour <= 17 ? RESOURCES.SOL_BANNER  : RESOURCES.NOCHE_BANNER): RESOURCES.NOCHE_BANNER} alt='Banner'></img>
             </div>
 
             <div className='z-10 w-[400px] h-screen rounded-lg flex flex-col justify-center items-center '>

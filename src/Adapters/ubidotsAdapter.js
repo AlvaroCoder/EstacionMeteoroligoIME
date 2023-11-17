@@ -20,15 +20,14 @@ export function AdapterUbidotsData(dataUbidots) {
       return val[0][1]
     });
     // Creación de labels en función del parámetro "Timestamp" recibido de Ubidots
-    const labelsX = dataUbidots[0].reverse().map((val)=>{
+
+    const labelsX = dataUbidots[0].reverse().filter((val)=>{
       const date = new Date(val[2]);
-      if (currentDate.getDay() === date.getDay()) {
-        const text = `${date.getHours()}:${date.getMinutes()}`
-        return text
-  
-      }
-      return null
-    });
+      return currentDate.getDay() === date.getDay();
+    }).map((val)=>{
+      const d = new Date(val[2])
+      return  `${d.getHours()}:${d.getMinutes()}`
+    })
     /*
       Transformamos la data de la forma [Array(100),Array(100),...,Array(100)]
       a [{
@@ -40,13 +39,10 @@ export function AdapterUbidotsData(dataUbidots) {
       }]
     */
     const splitData = labelsDevices.map((label, key )=>{
-      const data = dataUbidots[key].map((val)=>{
+      const data = dataUbidots[key].filter((val)=>{
         const date = new Date(val[2])
-        if (currentDate.getDay()===date.getDay()) {
-            return val[0]
-        }
-        return null;
-      });
+        return currentDate.getDay()===date.getDay();
+      }).map((val)=>val[0]);
       const datasets = [{
         label : label.toUpperCase(),
         data,
@@ -61,6 +57,7 @@ export function AdapterUbidotsData(dataUbidots) {
         }
       }
     });
+    console.log(splitData);
     return splitData
 }
 
