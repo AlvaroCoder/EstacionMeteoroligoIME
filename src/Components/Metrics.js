@@ -103,13 +103,10 @@ function Metrics() {
                   dataMetrics && dataMetrics.map((elemnt, key)=>{
                     return (
                       <div className='w-full h-full  px-10 py-10 flex flex-col justify-center'>
-                        <h1 className='text-3xl font-bold text-[#823B3B] ml-14 mt-12'>{elemnt['title']}</h1>
+                        {/* <h1 className='text-3xl font-bold text-[#823B3B] ml-14 mt-12'>{elemnt['title']}</h1> */}
                         <div className='h-[500px]  w-full flex flex-row items-center justify-center'>
                           <div className='h-[500px] w-[800px]'>
                             <Line key={key} className='w-full h-full mt-5' options={OptionsUbidots(elemnt['title'])} data={elemnt['data']}/>
-                          </div>
-                          <div className='w-[300px] h-[200px] '>
-
                           </div>
                         </div>
                       </div>

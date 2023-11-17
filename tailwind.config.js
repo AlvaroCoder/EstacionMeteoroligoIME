@@ -22,7 +22,8 @@ module.exports = withMT({
     },
     extend: { 
       fontFamily : {
-        londrina : ['Londrina Solid']
+        londrina : ['Londrina Solid'],
+        volkorn : ['Vollkorn']
       }
 
     },

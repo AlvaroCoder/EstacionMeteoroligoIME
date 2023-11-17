@@ -4,6 +4,7 @@ export function OptionsUbidots(text) {
     plugins: {
       legend: {
         position: 'top',
+        display : false
       },
       title: {
         display: true,
@@ -26,8 +27,15 @@ export function AdapterUbidotsData(dataUbidots) {
       return currentDate.getDay() === date.getDay();
     }).map((val)=>{
       const d = new Date(val[2])
-      return  `${d.getHours()}:${d.getMinutes()}`
-    })
+      let horas = d.getHours();
+      let minutos = d.getMinutes();
+
+      horas = horas % 12;
+      horas = horas || 12; // Si es 0, asigna 12 en lugar de 0
+
+      minutos = minutos < 10 ? '0' + minutos : minutos;
+      return  `${horas}:${minutos}`
+    });
     /*
       Transformamos la data de la forma [Array(100),Array(100),...,Array(100)]
       a [{
@@ -57,7 +65,6 @@ export function AdapterUbidotsData(dataUbidots) {
         }
       }
     });
-    console.log(splitData);
     return splitData
 }
 

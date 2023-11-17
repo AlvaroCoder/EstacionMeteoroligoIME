@@ -11,7 +11,7 @@ moment.locale('es', {
     weekdaysMin: 'Do_Lu_Ma_Mi_Ju_Vi_Sa'.split('_')
   })
   function StyleH1({text, style=null}) {
-    let styleText = "text-azul "
+    let styleText = "text-azul font-volkorn"
     if (style) {
         styleText+=style.style
     }
@@ -90,13 +90,13 @@ function Banner() {
 
             <div className='z-10 w-[400px] h-screen rounded-lg flex flex-col justify-center items-center '>
                <div className='px-5'>
-                    <h1 className='text-5xl font-bold text-blanco'>{timeString}</h1>
+                    <h1 className='text-5xl font-bold text-blanco font-volkorn'>{timeString}</h1>
                 </div>
                 <div className='px-5'>
-                    <h1 className='text-[16px] font-bold text-blanco'>{dateString}</h1>
+                    <h1 className='text-[16px] font-bold text-blanco font-volkorn'>{dateString}</h1>
                 </div>
                 <div className='px-5'>
-                    <h1 className='font-bold text-blanco'>{greetingString}</h1>
+                    <h1 className='font-bold text-blanco font-volkorn'>{greetingString}</h1>
                 </div>
             </div>
             <div className='z-10 w-[400px] h-screen rounded-lg flex flex-col justify-center items-center'>
