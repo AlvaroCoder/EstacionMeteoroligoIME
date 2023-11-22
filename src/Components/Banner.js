@@ -83,43 +83,43 @@ function Banner() {
         },300000)
     },[]);
     return (
-        <div className={`relative w-full h-screen flex flex-row justify-center items-center ${currentHour > 5 ? (currentHour <= 17 ? 'bg-naranja'  : 'bg-azul'): 'bg-azul'} `}>
+        <div className={`relative w-full  h-screen flex flex-row md:flex-row justify-center items-center ${currentHour > 5 ? (currentHour <= 17 ? 'bg-naranja'  : 'bg-azul'): 'bg-azul'} `}>
             <div className='absolute w-full h-screen top-0 right-0 z-0 flex justify-end items-end'>
             <img className='w-full h-screen object-cover' src={currentHour > 5 ? (currentHour <= 17 ? RESOURCES.SOL_BANNER  : RESOURCES.NOCHE_BANNER): RESOURCES.NOCHE_BANNER} alt='Banner'></img>
             </div>
 
-            <div className='z-10 w-[400px] h-screen rounded-lg flex flex-col justify-center items-center '>
+            <div className='z-10 sm:w-[400px] md:w-[400px] h-screen rounded-lg flex flex-col justify-center items-center '>
                <div className='px-5'>
-                    <h1 className='text-5xl font-bold text-blanco font-volkorn'>{timeString}</h1>
+                    <h1 className='sm:text-5xl md:text-5xl font-bold text-blanco font-volkorn md:text-5xl font-bold text-blanco font-volkorn'>{timeString}</h1>
                 </div>
                 <div className='px-5'>
-                    <h1 className='text-[16px] font-bold text-blanco font-volkorn'>{dateString}</h1>
+                    <h1 className='sm:text-[16px] md:text-[16px] font-bold text-blanco font-volkorn'>{dateString}</h1>
                 </div>
                 <div className='px-5'>
-                    <h1 className='font-bold text-blanco font-volkorn'>{greetingString}</h1>
+                    <h1 className='sm:font-bold text-blanco font-volkorn'>{greetingString}</h1>
                 </div>
             </div>
-            <div className='z-10 w-[400px] h-screen rounded-lg flex flex-col justify-center items-center'>
+            <div className='z-10 md:w-[400px] h-screen rounded-lg flex flex-col justify-center items-center'>
                 <div>
-                    <h1 className='text-azul text-3xl font-bold'>Hoy</h1>
+                    <h1 className='md:text-3xl text-azul font-bold'>Hoy</h1>
                 </div>
                 {
                     !loading ? 
-                        <div className='z-10 h-40 flex flex-row justify-center items-center'>
-                            <img className='w-32 h-32' src={temperature.icon && temperature.icon } alt='Icono Imagen Estación Meteorológica' ></img>
-                            <h1 className='text-azul text-8xl font-bold mx-4 '>{temperature.temp}°C</h1>
+                        <div className='z-10 sm:h-40 flex sm:flex-row md:flex-row justify-center items-center'>
+                            <img className='w-32 h-32 ' src={temperature.icon && temperature.icon } alt='Icono Imagen Estación Meteorológica' ></img>
+                            <h1 className='sm:text-8xl text-azul font-bold mx-4 md:text-8xl text-azul font-bold mx-4 '>{temperature.temp}°C</h1>
                         </div>          
                     : <span>Loading ...</span>    
                 }
                 {
                     !loading ? 
-                    <div className='z-10 flex flex-col'>
-                        <div className='flex flex-row px-5'>
-                            <StyleH1 style={{style : "font-bold mr-5"}} text={"Viento"}/>
+                    <div className='z-10 flex flex-col sm:flex-row items-center'>
+                        <div className='flex flex-col px-5'>
+                            <StyleH1 style={{style : "font-bold sm:mr-5 sm:mb-0"}} text={"Viento"}/>
                             <StyleH1 style={{style : "font-bold"}} text={`${velocityValue}km/h`} />
                         </div>
-                        <div className='flex flex-row px-5'>
-                            <StyleH1 style={{style : "font-bold mr-5"}} text={"Humedad"} />
+                        <div className='flex flex-col px-5'>
+                            <StyleH1 style={{style : "font-bold sm:mr-5 sm:mb-0"}} text={"Humedad"} />
                             <StyleH1 style={{style : "font-bold"}} text={`${humidityValue}%`} />
                         </div>
                     </div>
