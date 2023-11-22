@@ -14,7 +14,7 @@ function NavBar() {
     },[])
   return (
     <nav className='sm:w-100 sm:h-20 bg-slate-300 flex flex-row justify-between items-center'>
-        <div className='w-48 sm:w-20  flex justify-center'>
+        <div className='w-48 flex justify-center'>
             <img className='' alt='Logo Udep' src={resources && resources.UDEO_LOGO_AZUL}></img>
         </div>  
         <div className='sm:w-30'>

@@ -5,6 +5,7 @@ import { Line } from 'react-chartjs-2';
 import { AdapterUbidotsData, OptionsUbidots } from '../Adapters/ubidotsAdapter';
 import { Carousel, IconButton } from '@material-tailwind/react';
 import { RESOURCES } from '../config/assets';
+import * as tf from '@tensorflow/tfjs';
 
 function BoxIconStation({title, icon, data, onClick, activeIndex=0, index=0}) {
   return (
@@ -20,7 +21,7 @@ function BoxIconStation({title, icon, data, onClick, activeIndex=0, index=0}) {
   )
 }
 
-function Metrics() {
+function PredictionMetrics() {
     const [dataMetrics, setDataMetrics] = useState(null);
     const [loadingData, setLoadingData] = useState(false);
     const [currentTemp, setCurrentTemp] = useState(null);
@@ -104,8 +105,8 @@ function Metrics() {
                     return (
                       <div className='w-full h-full  px-10 py-10 flex flex-col justify-center'>
                         {/* <h1 className='text-3xl font-bold text-[#823B3B] ml-14 mt-12'>{elemnt['title']}</h1> */}
-                        <div className='h-[500px] h-auto  w-full flex flex-row items-center justify-center'>
-                          <div className='h-[500px] w-[800px]'>
+                        <div className='h-[500px] sm:h-auto  w-full flex flex-row items-center justify-center'>
+                          <div className='sm:h-[500px] w-[800px]'>
                             <Line key={key} className='w-full h-full mt-5' options={OptionsUbidots(elemnt['title'])} data={elemnt['data']}/>
                           </div>
                         </div>
@@ -120,4 +121,33 @@ function Metrics() {
   )
 }
 
-export default Metrics;
+function Clima(){
+    const [modelo, setModelo] =useState(null);
+
+    useEffect(() =>{
+        async function cargarModelo() {
+            try {
+                console.log("Cargando modelo...");
+                const modeloCargado = await tf.loadLayersModel("model_clima.jason");
+                setModelo(modeloCargado);
+                console.log("Modelo cargado...");
+
+            }   catch(error) {
+                console.error("Error al cargar el modelo",error);
+
+            }
+        }
+        cargarModelo();
+    },[]);
+
+    return(
+        <div>
+            <p className='sm:w-[450px] text-blanco font-volkorn'>Las condiciones climáticas no favorecen al crecimiento de thrips actualmente.</p>
+        </div>
+    );
+}
+
+
+
+export default PredictionMetrics;
+

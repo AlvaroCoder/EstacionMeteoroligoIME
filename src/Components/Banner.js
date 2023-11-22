@@ -105,7 +105,7 @@ function Banner() {
                 </div>
                 {
                     !loading ? 
-                        <div className='z-10 sm:h-40 flex sm:flex-row md:flex-row justify-center items-center'>
+                        <div className='z-10 h-40 flex sm:flex-row md:flex-row justify-center items-center'>
                             <img className='w-32 h-32 ' src={temperature.icon && temperature.icon } alt='Icono Imagen Estación Meteorológica' ></img>
                             <h1 className='sm:text-8xl text-azul font-bold mx-4 md:text-8xl text-azul font-bold mx-4 '>{temperature.temp}°C</h1>
                         </div>          
