@@ -82,6 +82,9 @@ function PredictionMetrics() {
   }
   return (
     <div className='w-full min-h-screen flex flex-col py-5'>
+        <div className='flex items-center justify-center h-1/2'>
+          <h1 className='md:text-3xl text-azul font-bold'>Pronóstico</h1>
+        </div>
         <div className='flex flex-col justify-center items-center w-full min-h-screen'>
             <div className="w-full px-4 h-screen mt-12 rounded-lg">
               <Carousel 
