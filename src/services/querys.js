@@ -14,5 +14,12 @@ export function fetchDataDevices() {
     })
 }
 export function fetchDevices() {
-    
+    return fetch('https://api.tomorrow.io/v4/timelines?location=40.75872069597532,-73.98529171943665&fields=temperature&timesteps=1h&units=metric&apikey=xluHiF97goVeLDMRzuKVXS0Uv2Ntpreo',{
+        method : 'GET'
+    })
+}
+export function fetchTemperature() {
+    return fetch('https://api.tomorrow.io/v4/weather/forecast?location=-5.171203, -80.640416&apikey=cFm6Bc5bGrjD6Uf1MKmheQCfDgaJYOOI&startTime=2023-11-22T00:00:00Z&endTime=2023-11-22T23:00:00Z&timesteps=1h',{
+        method : 'GET'
+    })
 }

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { fetchDataDevices } from '../services/querys';
+import { fetchDataDevices, fetchTemperature } from '../services/querys';
 import {Chart as ChartJS,CategoryScale,LinearScale,PointElement,LineElement,Title,Tooltip,Legend} from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import { AdapterUbidotsData, OptionsUbidots } from '../Adapters/ubidotsAdapter';
+import { AdapterTemperatureData, AdapterUbidotsData, OptionsUbidots } from '../Adapters/ubidotsAdapter';
 import { Carousel, IconButton } from '@material-tailwind/react';
 import { RESOURCES } from '../config/assets';
 import * as tf from '@tensorflow/tfjs';
@@ -27,33 +27,29 @@ function PredictionMetrics() {
     const [currentTemp, setCurrentTemp] = useState(null);
     const [dataWidgets, setDataWidgets] = useState(null);
     const [iconsStation, setIconsStation] = useState([]);
+    const [dataTemp, setDataTemp] = useState(null);
     useEffect(()=>{
         // Consulta de data API Ubidots
         async function getPost() {
             // Petición de los datos de los dispositivos
             setLoadingData(true);
             const fetchData = await fetchDataDevices();
+            const dataTemp = await fetchTemperature();
+            const jsonTemp = await dataTemp.json();
             // Convierto la data a JSON
             const jsonData = await fetchData.json();
             // Transformar la data de Ubidots para la libreria reac-charts
             setLoadingData(false)
             const dataAdaptted = AdapterUbidotsData(jsonData.results);
+            const dataAdapptedTemp = AdapterTemperatureData(jsonTemp);
 
-            setDataMetrics(dataAdaptted);
+            setDataTemp(dataAdapptedTemp)
+            setDataMetrics(dataAdaptted); 
+
             const currentTemperature = dataAdaptted.filter((val)=>val.title.toUpperCase()==="TEMPERATURE")[0]['data']['datasets'][0]['data'][0]
-            const currentHumidity = dataAdaptted.filter((val)=>val.title.toUpperCase()==="HUMIDITY")[0]['data']['datasets'][0]['data'][0];
-            const currentWind = dataAdaptted.filter((val)=>val.title.toUpperCase()==="VELOCITY")[0]['data']['datasets'][0]['data'][0];
-            const currentDirection = dataAdaptted.filter((val)=>val.title.toUpperCase()==="DIRECTION")[0]['data']['datasets'][0]['data'][0];
-            const currentLigth = dataAdaptted.filter((val)=>val.title.toUpperCase()==="LIGHT")[0]['data']['datasets'][0]['data'][0];
-
+         
             const listIcons = [
-              {title : 'Dirección', icon : RESOURCES.ICON_DIRECTION, data : `${currentDirection}°`},        
-              {title : 'Humedad', icon : RESOURCES.ICON_HUMIDITY, data : `${currentHumidity}%`},
-              {title : 'UV', icon : RESOURCES.ICON_SOL, data : `${currentLigth}`},
-              {title : 'Presión', icon : RESOURCES.ICON_WIND, data : `${currentWind}hPa`},
-              {title : 'Lluvia', icon : RESOURCES.ICON_LLUVIA, data : `${currentWind}mm`},
               {title : 'Temperatura', icon : RESOURCES.ICON_TEMPERATURE, data : `${currentTemperature}°C`},
-              {title : 'Viento', icon : RESOURCES.ICON_WIND, data : `${currentWind}km/h`},
             ]
             setCurrentTemp(currentTemperature);
             setIconsStation(listIcons)
@@ -87,37 +83,16 @@ function PredictionMetrics() {
         </div>
         <div className='flex flex-col justify-center items-center w-full min-h-screen'>
             <div className="w-full px-4 h-screen mt-12 rounded-lg">
-              <Carousel 
-                className='rounded-xl'
-                navigation={({setActiveIndex, activeIndex})=>(
-                  <div className='absolute w-full top-0 left-2/4 -translate-x-2/4 z-50 flex  gap-5'>
-                    <div className='w-full grid grid-cols-7 gap-4'>
-                        {
-                          iconsStation[0] && iconsStation.map(({title, icon, data}, key)=>{
-                            return (
-                              <BoxIconStation activeIndex={activeIndex} index={key} onClick={()=>setActiveIndex(key)} key={key} title={title} icon={icon} data={data} />
-                            )
-                          })
-                        }
-                      </div>
+            {
+                  dataTemp && <div className='w-full h-full  px-10 py-10 flex flex-col justify-center'>
+                  {/* <h1 className='text-3xl font-bold text-[#823B3B] ml-14 mt-12'>{elemnt['title']}</h1> */}
+                  <div className='h-[500px] sm:h-auto  w-full flex flex-row items-center justify-center'>
+                    <div className='sm:h-[500px] w-[800px]'>
+                      <Line className='w-full h-full mt-5' options={OptionsUbidots(dataTemp['title'])} data={dataTemp['data']}/>
+                    </div>
                   </div>
-                )}
-              >
-                {
-                  dataMetrics && dataMetrics.map((elemnt, key)=>{
-                    return (
-                      <div className='w-full h-full  px-10 py-10 flex flex-col justify-center'>
-                        {/* <h1 className='text-3xl font-bold text-[#823B3B] ml-14 mt-12'>{elemnt['title']}</h1> */}
-                        <div className='h-[500px] sm:h-auto  w-full flex flex-row items-center justify-center'>
-                          <div className='sm:h-[500px] w-[800px]'>
-                            <Line key={key} className='w-full h-full mt-5' options={OptionsUbidots(elemnt['title'])} data={elemnt['data']}/>
-                          </div>
-                        </div>
-                      </div>
-                      )
-                  })
+                </div>
                 }
-              </Carousel>
             </div>
         </div>
     </div>

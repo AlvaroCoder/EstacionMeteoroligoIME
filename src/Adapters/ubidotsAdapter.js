@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export function OptionsUbidots(text) {
   return {
     responsive: true,
@@ -69,3 +71,26 @@ export function AdapterUbidotsData(dataUbidots) {
 }
 
 // :)
+export function AdapterTemperatureData(data) {
+  const dataTemp = data['timelines']['hourly'];
+  const labelsX = dataTemp.map((val)=>{
+    
+    return val['time'];
+  });
+  const dataT = dataTemp.map((val)=>val['values']['temperature'])
+  const datasets = [
+    {
+      label : "Temperatura",
+      data : dataT,
+      borderColor: 'rgb(53, 162, 235)',
+        backgroundColor: 'rgba(53, 162, 235, 0.5)'
+    }
+  ]
+  return {
+    "title" : "Temperature",
+    "data":{
+      datasets,
+      "labels":labelsX
+    }
+  }
+}
